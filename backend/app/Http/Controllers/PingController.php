@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class PingController extends Controller
 {
     protected const STATUS_OK = 'ok';
-    protected const STATUS_FAILED = 'failed';
+    protected const STATUS_FAILED = 1;
 
     public function store(StoreRequest $request): JsonResponse
     {
@@ -20,7 +20,7 @@ class PingController extends Controller
             return response()->json(['status' => self::STATUS_OK]);
         } catch (\Exception $e) {
             return response()->json([
-                'status' => self::STATUS_FAILED,
+                'error' => self::STATUS_FAILED,
                 'message' => $e->getMessage()
             ]);
         }

@@ -7,4 +7,4 @@ Route::group(['throttle:30,1'], function () {
     Route::resource('ping', PingController::class)->only(['store']);
 });
 
-Route::fallback(fn() => response()->json(['status' => 'failed'], 404));
+Route::fallback(fn() => response()->json(['error' => 1], 404));

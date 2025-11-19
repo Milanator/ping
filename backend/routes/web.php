@@ -2,4 +2,4 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::fallback(fn() => response()->json(['status' => 'failed'], 404));
+Route::fallback(fn() => response()->json(['error' => 1], 404));

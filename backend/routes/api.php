@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\PingController;
-use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 
-Route::resource('ping', PingController::class)->only(['store']);
+Route::group(['throttle:30,1'], function () {
+    Route::resource('ping', PingController::class)->only(['store']);
+});
+
+Route::fallback(fn() => response()->json(['status' => 'failed'], 404));
